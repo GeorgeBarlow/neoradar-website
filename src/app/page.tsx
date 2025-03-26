@@ -98,7 +98,7 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-xs sm:max-w-none mx-auto">
             <div className="flex flex-row items-center gap-3 sm:gap-4">
-              <LandingButton onClick={() => (window.location.href = "https://github.com/pierr3/TrackAudio/wiki")}>
+              <LandingButton onClick={() => (window.location.href = "https://docs.neoradar.app")}>
                 <span className="opacity-90 hover:opacity-100 transition-opacity">Docs</span>
               </LandingButton>
             </div>
