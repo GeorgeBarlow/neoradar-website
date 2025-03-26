@@ -1,30 +1,30 @@
 // src/app/page.tsx
 "use client";
-import { useState, useEffect } from "react";
+// import { useState } from "react";
 import { motion } from "framer-motion";
 import { AirspaceDisplay } from "@/components/airspace/AirspaceDisplay";
 import { PageTitle } from "@/components/ui/page-title";
-import { PreviewImage } from "@/components/ui/preview-image";
-import { DownloadButton, PlatformType } from "@/components/ui/download-button";
-import { FAQModal } from "@/components/ui/faq-modal";
+// import { PreviewImage } from "@/components/ui/preview-image";
+// import { DownloadButton, PlatformType } from "@/components/ui/download-button";
+// import { FAQModal } from "@/components/ui/faq-modal";
 import { LandingButton } from "@/components/ui/landing-button";
-import { remark } from "remark";
-import html from "remark-html";
+// import { remark } from "remark";
+// import html from "remark-html";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { useOperatingSystem } from "@/hooks/OSDetector";
+// import { useOperatingSystem } from "@/hooks/OSDetector";
 
-interface Release {
-  tag_name: string;
-  assets: Array<{
-    name: string;
-    browser_download_url: string;
-  }>;
-}
+// interface Release {
+//   tag_name: string;
+//   assets: Array<{
+//     name: string;
+//     browser_download_url: string;
+//   }>;
+// }
 
 export default function Home() {
   // const platform = useOperatingSystem();
   // const [releases, setReleases] = useState<Release | null>(null);
-  const [showFAQ, setShowFAQ] = useState(false);
+  // const [showFAQ, setShowFAQ] = useState(false);
   // const [faqContent, setFaqContent] = useState("");
 
   // useEffect(() => {
