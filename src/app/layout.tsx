@@ -4,8 +4,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
-  title: "Track Audio",
-  description: "A next generation Audio-For-VATSIM ATC Client for macOS, Linux and Windows.",
+  title: "NeoRadar",
+  description: "A next generation VATSIM ATC Client for macOS, Linux and Windows.",
 };
 
 export default function RootLayout({
