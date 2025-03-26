@@ -16,7 +16,7 @@ export function PageTitle({ description }: PageTitleProps) {
         </div>
       </div>
 
-      <p className="text-base sm:text-lg md:text-lg text-gray-700 dark:text-blue-100 font-semibold tracking-tighter max-w-2xl mx-auto ">{description}</p>
+      <p className="text-base sm:text-lg md:text-lg text-[#242424] dark:text-[#dbdbdb] font-semibold tracking-tighter max-w-2xl mx-auto ">{description}</p>
     </motion.div>
   );
 }
