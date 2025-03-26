@@ -1,8 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import FullLogoLight from "../../../public/FullLogoLight.svg";
-import FullLogoDark from "../../../public/FullLogoDark.svg";
+
 interface PageTitleProps {
   description: string;
 }
@@ -12,8 +11,8 @@ export function PageTitle({ description }: PageTitleProps) {
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }} className="space-y-4 md:space-y-6">
       <div className="container mx-auto flex flex-col items-center justify-center text-center">
         <div className="flex items-center gap-2">
-          <Image src={FullLogoDark} alt="Logo" width={500} className="hidden dark:block" />
-          <Image src={FullLogoLight} alt="Logo" width={500} className="dark:hidden" />
+          <Image src="/FullLogoDark.svg" alt="Logo" width={500} height={88} className="hidden dark:block" />
+          <Image src="/FullLogoLight.svg" alt="Logo" width={500} height={88} className="dark:hidden" />
         </div>
       </div>
 
