@@ -106,7 +106,7 @@ export default function Home() {
         </motion.div>
       </div>
       {/* <FAQModal open={showFAQ} onOpenChange={setShowFAQ} content={faqContent} /> */}
-      <VersionDisplay version={"v0.0.7-alpha"} />
+      <VersionDisplay version={"v0.0.9-alpha"} />
     </div>
   );
 }
