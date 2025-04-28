@@ -1,86 +1,53 @@
 // src/app/page.tsx
 "use client";
-// import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { AirspaceDisplay } from "@/components/airspace/AirspaceDisplay";
 import { PageTitle } from "@/components/ui/page-title";
-// import { PreviewImage } from "@/components/ui/preview-image";
-// import { DownloadButton, PlatformType } from "@/components/ui/download-button";
-// import { FAQModal } from "@/components/ui/faq-modal";
 import { LandingButton } from "@/components/ui/landing-button";
-// import { remark } from "remark";
-// import html from "remark-html";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-// import { useOperatingSystem } from "@/hooks/OSDetector";
 
-// interface Release {
-//   tag_name: string;
-//   assets: Array<{
-//     name: string;
-//     browser_download_url: string;
-//   }>;
-// }
+// Default version information that can be used as fallback
 
 export default function Home() {
-  // const platform = useOperatingSystem();
-  // const [releases, setReleases] = useState<Release | null>(null);
-  // const [showFAQ, setShowFAQ] = useState(false);
-  // const [faqContent, setFaqContent] = useState("");
+  const [version, setVersion] = useState<string | undefined>();
 
-  // useEffect(() => {
-  //   const fetchReleases = async () => {
-  //     try {
-  //       const response = await fetch("https://api.github.com/repos/pierr3/TrackAudio/releases/latest");
-  //       const data = await response.json();
-  //       setReleases(data);
-  //     } catch (error) {
-  //       console.error("Error fetching releases:", error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchVersion = async () => {
+      try {
+        // Using our own API endpoint to avoid CORS issues
+        const response = await fetch("/api/version");
 
-  //   const fetchFAQ = async () => {
-  //     try {
-  //       const readme = await fetch("https://raw.githubusercontent.com/pierr3/TrackAudio/main/README.md");
-  //       const text = await readme.text();
-  //       const faqStart = text.indexOf("## FAQ") + "## FAQ".length;
-  //       const faqEnd = text.indexOf("## Installation", faqStart);
-  //       const faqSection = text.slice(faqStart, faqEnd);
+        if (!response.ok) {
+          console.error("Failed to fetch version info:", response.status, response.statusText);
+          return; // Keep using the default version
+        }
 
-  //       const processedContent = await remark().use(html).process(faqSection);
+        const data = await response.json();
 
-  //       setFaqContent(processedContent.toString());
-  //     } catch (error) {
-  //       console.error("Error fetching FAQ:", error);
-  //     }
-  //   };
+        if (data.version) {
+          setVersion(data.version);
+        }
+      } catch (error) {
+        console.error("Error fetching version:", error);
+        // Keep using the default version
+      }
+    };
 
-  //   fetchReleases();
-  //   fetchFAQ();
-  // }, []);
+    fetchVersion();
+  }, []);
 
-  // const handlePlatformSelect = (selectedPlatform: PlatformType) => {
-  //   if (!releases) {
-  //     window.location.href = "https://github.com/pierr3/TrackAudio/releases";
-  //     return;
-  //   }
+  const VersionDisplay = ({ version }: { version?: string }) => {
+    if (!version) {
+      return null; // Return nothing if version is null
+    }
 
-  //   const patterns: Record<PlatformType, string> = {
-  //     windows: `-x64-setup.exe`,
-  //     "macos-silicon": `-apple-silicon.dmg`,
-  //     "macos-intel": `-x64.dmg`,
-  //     "linux-deb": `_amd64.deb`,
-  //     "linux-snap": `_amd64.snap`,
-  //     "linux-appimage": `-x86_64.AppImage`,
-  //   };
+    // Remove any "v" prefix if it exists and add it back consistently
+    const formattedVersion = version.replace(/^v/i, "");
 
-  //   const asset = releases.assets.find((a) => a.name.includes(patterns[selectedPlatform]));
-  //   window.location.href = asset?.browser_download_url || "https://github.com/pierr3/TrackAudio/releases";
-  // };
-
-  const VersionDisplay = ({ version }: { version: string | null }) => {
     return (
       <div className="absolute bottom-4 left-0 right-0 text-center">
-        <span className="font-sans text-xs text-foreground/60">{version ? `v${version.replace("v", "")}` : "Loading..."}</span>
+        <span className="font-sans text-xs text-foreground/60">v{formattedVersion}</span>
       </div>
     );
   };
@@ -105,8 +72,7 @@ export default function Home() {
           </div>
         </motion.div>
       </div>
-      {/* <FAQModal open={showFAQ} onOpenChange={setShowFAQ} content={faqContent} /> */}
-      <VersionDisplay version={"v0.0.9-alpha"} />
+      <VersionDisplay version={version} />
     </div>
   );
 }
