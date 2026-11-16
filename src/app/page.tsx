@@ -1,6 +1,7 @@
 // src/app/page.tsx
 "use client";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { AirspaceDisplay } from "@/components/airspace/AirspaceDisplay";
 import { PageTitle } from "@/components/ui/page-title";
@@ -72,6 +73,9 @@ export default function Home() {
           </div>
         </motion.div>
       </div>
+      <Link href="/privacy" className="absolute bottom-9 left-1/2 -translate-x-1/2 z-10 font-sans text-xs text-foreground/60 hover:text-foreground hover:underline transition-colors">
+        Privacy Policy
+      </Link>
       <VersionDisplay version={version} />
     </div>
   );
