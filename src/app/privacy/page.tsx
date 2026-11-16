@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export default function PrivacyPage() {
           ← Back
         </Link>
         <article className="prose prose-neutral dark:prose-invert mt-6 max-w-none">
-          <ReactMarkdown>{markdown}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
         </article>
       </div>
     </main>
